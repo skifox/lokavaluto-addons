@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+    <record id="transaction_type_view_tree" model="ir.ui.view">
+        <field name="name">Transaction type tree view</field>
+        <field name="model">exchangecounter.transactiontype</field>
+        <field name="inherit_id" ref=""/>
+        <field name="arch" type="xml">
+          <tree editable="bottom">
+            <field name="name"/>
+          </tree>
+        </field>
+    </record>
+</data>
+</odoo>

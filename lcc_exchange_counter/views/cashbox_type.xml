@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+    <record id="cashbox_type_view_tree" model="ir.ui.view">
+        <field name="name">Cashbox type tree view</field>
+        <field name="model">cashbox_type</field>
+        <field name="inherit_id" ref=""/>
+        <field name="arch" type="xml">
+          <tree editable="bottom">
+            <field name="name"/>
+            <field name="display_name"/>
+          </tree>
+        </field>
+    </record>
+</data>
+</odoo>

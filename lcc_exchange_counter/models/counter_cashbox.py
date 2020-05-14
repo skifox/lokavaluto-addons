@@ -2,6 +2,9 @@ from odoo import models, fields
 from odoo.tools.translate import _
 
 class counter_cashbox(models.Model):
+    _name = 'exchangecounter.cashbox'
+    _description = "MLCC Counter Cashbox"
+
     id = fields.Integer(
         string=_("ID"),
         required=False,

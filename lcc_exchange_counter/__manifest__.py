@@ -6,7 +6,7 @@
     'version': '12.0.1.0.10',
     'author': 'Lokavaluto',
     'maintainer': 'False',
-    'website': 'False',
+    'website': 'https://lokavaluto.fr',
     'license': '',
     'category': 'False',
     'summary': 'Manage all the transactions of a local complementary currency''s exchange counter',
@@ -86,7 +86,10 @@ mission is to support the collaborative development of Odoo features and ecosyst
     # always loaded
     'data': [
         'views/counters.xml',
+        'views/cashbox_type.xml',
         'views/exchange_counters_menu.xml',
+        'views/transactions.xml',
+        'views/transaction_type.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -43,11 +43,14 @@ class Transaction(models.Model):
     )
 
 
-
+    transaction_type = fields.Many2one(
+        'exchangecounter.transactiontype',
+        string='Transaction Type',
+        required= True,
+    )
     transaction_date = fields.Datetime(
         string="Transaction Date",
         required= True,
-
     )
     transaction_amount = fields.Float( 
         string='Amount',
@@ -102,7 +105,20 @@ class Money(models.Model):
     _description = "MLCC Coupon"
     _inherit = 'exchangecounter.transaction'
 
-
+    journal_orig_id=fields.Many2one(
+        'account.journal',
+        string='Origine stock',
+        required=True,
+        ondelete='set null',
+        readonly=True
+    )
+    journal_dest_id=fields.Many2one(
+        'account.journal',
+        string='Destination stock',
+        required=True,
+        ondelete='set null',
+        readonly=True
+    )
 
 
 
@@ -110,3 +126,18 @@ class Deposit(models.Model):
     _name = 'exchangecounter.deposit'
     _description = "MLCC Coupon"
     _inherit = 'exchangecounter.transaction'
+
+    journal_orig_id=fields.Many2one(
+        'account.journal',
+        string='Origine stock',
+        required=True,
+        ondelete='set null',
+        readonly=True
+    )
+    journal_dest_id=fields.Many2one(
+        'account.journal',
+        string='Destination stock',
+        required=True,
+        ondelete='set null',
+        readonly=True
+    )

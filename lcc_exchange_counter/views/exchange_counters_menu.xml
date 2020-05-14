@@ -4,7 +4,7 @@
         <record id="action_counters_kanban_view" model="ir.actions.act_window">
             <field name="name">Exchange Counters</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">counter_cashbox</field>
+            <field name="res_model">exchangecounter.cashbox</field>
             <field name="view_mode">kanban</field>
             <field name="help" type="html"><p><br/></p></field>
         </record>

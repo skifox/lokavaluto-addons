@@ -1,24 +1,35 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
-            </t>
-          </dl>
-        </template>
--->
+      <!-- List view of a transaction -->
+      <record model="ir.ui.view" id="transactions_tree_view">
+        <field name="name">transactions.tree</field>
+        <field name="model">exchangecounter.transaction</field>
+        <field name="arch" type="xml">
+          <tree string="Transactions Tree">
+            <field name="transaction_date"/>
+            <field name="create_uid"/>
+            <field name="transaction_amount"/>
+            <field name="status"/>
+          </tree>
+        </field>
+      </record>
+
+
+      <!-- Form view of a transaction -->
+      <record model="ir.ui.view" id="transactions_form_view">
+        <field name="name">transactions.form</field>
+        <field name="model">exchangecounter.transaction</field>
+        <field name="arch" type="xml">
+          <form string="Transactions Tree">
+            <sheet>
+              <group>
+                <field name="transaction_date"/>
+                <field name="create_uid"/>
+                <field name="transaction_amount"/>
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
     </data>
 </odoo>

@@ -3,7 +3,7 @@
   <data>
     <record model="ir.ui.view" id="counters_view">
       <field name="name">counters.kanban</field>
-      <field name="model">counter_cashbox</field>
+      <field name="model">exchangecounter.cashbox</field>
       <field name="arch" type="xml">
         <kanban create="false" class="o_kanban_dashboard o_pos_kanban">
           <field name="name"/>
