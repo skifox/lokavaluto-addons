@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="counters_view">
+      <field name="name">counters.kanban</field>
+      <field name="model">counter_cashbox</field>
+      <field name="arch" type="xml">
+        <kanban create="false" class="o_kanban_dashboard o_pos_kanban">
+          <field name="name"/>
+          <field name="salesteams_id"/>
+          <field name="local_currency_cash_journal_id"/>
+          <field name="national_currency_cash_journal_id"/>
+          <field name="national_currency_check_journal_id"/> 
+          <field name="local_currency_cash_out_journal_id"/>
+          <field name="national_currency_cash_out_journal_id"/>
+          <field name="national_currency_check_out_journal_id"/> 
+          <field name="local_currency_id"/>
+          <field name="national_currency_id"/>
+          <field name="cashbox_referent_id"/>
+                        
+          <templates>
+            <t t-name="kanban-box">
+              <t t-set="national_cash_in"  t-value="record.national_currency_cash_journal_id.raw_value"/>
+              <t t-set="national_cash_out" t-value="record.national_currency_cash_out_journal_id.raw_value"/>
+              <t t-set="local_cash_in"     t-value="record.local_currency_cash_journal_id.raw_value"/>
+              <t t-set="local_cash_out"    t-value="record.local_currency_cash_out_journal_id.raw_value"/>
+              <t t-set="check_in"          t-value="record.national_currency_check_journal_id.raw_value"/>
+              <t t-set="check_out"         t-value="record.national_currency_check_out_journal_id.raw_value"/>
+              <t t-set="local_currency"    t-value="record.local_currency_id.raw_value"/>
+              <t t-set="nationa_currency"  t-value="record.national_currency_id.raw_value"/>
+              <t t-set="team_id"           t-value="record.salesteams_id.value"/>
+              <t t-set="referent_id"       t-value="record.cashbox_referent_id.value"/>
+                              
+              <div style="width: 450px;">
+                <div class="o_kanban_card_header">
+                  <div class="o_kanban_card_header_title mb16">
+                    <div class="o_primary">
+                      <t t-esc="record.x_name.value"/>
+                    </div>
+                    <div class="badge badge-info o_kanban_inline_block">  
+                      <t t-esc="record.salesteams_id.value"/>
+                      /<t t-esc="record.cashbox_referent_id.value"/>
+                    </div>
+                    <t t-if="x_cashbox_type_id == 'Comptoir de change'"> <!-- t-call="JournalBodyGraph"-->
+                      <div class="badge badge-success o_kanban_inline_block">In Progress</div>
+                    </t>
+                    <t t-set="unused_message">Unused</t>
+                  </div>
+                  <div class="o_kanban_manage_button_section">
+                    <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                  </div>
+                </div>
+
+                <!-- paramétrage présentation du bloc kanban -->
+                <div class="container o_kanban_card_content">
+                  <h4>Transfert</h4>
+                  <div class="col-12 texte-center o_kanban_primary_left"> <!--  groups="account_check_deposit.account_check_deposit_view_tree"-->
+                    <button class="offset-1 col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{national_cash_in}},'default_bank_journal_id':{{national_cash_out}}}"><t t-esc="record.x_national_currency_id.value"/></button>
+                    <button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{local_cash_in}},'default_bank_journal_id':{{local_cash_out}}}"><t t-esc="record.x_local_currency_id.value"/></button>
+                    <!--button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_x_salesteams_id': {{team_id}},'default_journal_id': {{local_cash_in}},'default_bank_journal_id':{{local_cash_out}}}"><t t-esc="record.x_local_currency_id.value"/></button-->
+                    <button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{check_in}},'default_bank_journal_id':{{check_out}}}">Chèques</button>
+                  </div>
+                </div>
+
+                <!-- Paramétrage menu accessible via les ...-->
+                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                  <div class="row">
+                    <div class="col-6 o_kanban_card_manage_section o_kanban_manage_view">
+                      <div role="menuitem" class="o_kanban_card_manage_title">
+                        <span>Adhésions</span>
+                      </div>
+                      <div role="menuitem">
+                        <a name="483" type="action">Nouvel adhérent (N° attribué manuellement)</a> <!-- TODO filtrer les cartes vierges du bassin sur les t-attf-data-context="{'default_team_id': {{team_id}}}" -->
+                        <!-- envoie vers la liste des tous les adhérents ou demander saisie numéro carte et envoi vers la fiche -->
+                      </div>
+                      <div role="menuitem">
+                        <a name="483" type="action">Nouvel adhérent (N° automatique)</a> <!-- TODO ouverture de la création d'un membre -->
+                        <!-- envoie vers la création d'un adhérent avec attribution automatique d'un numéro d'adhérent -->
+                      </div>
+
+                      <!-- TODO a supprimer quand lien du bas sera fonctionnel-->
+                      <div role="menuitem">
+                        <a name="812" type="edit">Configuration</a>
+                      </div>
+                      <!--div role="menuitem">
+                        <a name="813" type="action">Envoie caisse MLC</a>
+                      </div>
+                      <div role="menuitem">
+                        <a name="813" type="action">Envoie chèques EUR</a>
+                      </div-->
+                    </div>
+
+                    <!--div class="col-6 o_kanban_card_manage_section o_kanban_manage_new">
+                      <div role="menuitem" class="o_kanban_card_manage_title">
+                        <span>Reporting</span>
+                      </div>
+                      <div role="menuitem">
+                        <a name="" type="action">Orders</a>
+                      </div>
+                    </div-->
+                  </div>
+              
+                  <!-- TODO faire en sorte que ce lien soit visible comme sur la page point de vente -->
+                  <div class="o_kanban_card_manage_settings row" groups="x_accounting_config.edit">
+                    <div role="menuitem" class="col-12">
+                      <a type="edit">Settings</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+  </data>
+</odoo>         
+

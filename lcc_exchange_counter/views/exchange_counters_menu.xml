@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="action_counters_kanban_view" model="ir.actions.act_window">
+            <field name="name">Exchange Counters</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">counter_cashbox</field>
+            <field name="view_mode">kanban</field>
+            <field name="help" type="html"><p><br/></p></field>
+        </record>
+
+        <menuitem id="main_action_counters_kanban_view_menu" 
+                name="Exchange Counters"/>
+        <menuitem id="action_counters_kanban_view_menu"
+                name="Exchange Counters"
+                action="action_counters_kanban_view"
+                parent="main_action_counters_kanban_view_menu"                           
+                />
+    </data>
+</odoo>
