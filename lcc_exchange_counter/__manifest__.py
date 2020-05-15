@@ -89,7 +89,6 @@ mission is to support the collaborative development of Odoo features and ecosyst
         'views/cashbox_type.xml',
         'views/exchange_counters_menu.xml',
         'views/transactions.xml',
-        'views/transaction_type.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -9,11 +9,24 @@
             <field name="help" type="html"><p><br/></p></field>
         </record>
 
+        <record id="action_transactions_tree_view" model="ir.actions.act_window">
+            <field name="name">Transactions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">exchangecounter.transaction</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html"><p><br/></p></field>
+        </record>
+
         <menuitem id="main_action_counters_kanban_view_menu" 
                 name="Exchange Counters"/>
         <menuitem id="action_counters_kanban_view_menu"
                 name="Exchange Counters"
                 action="action_counters_kanban_view"
+                parent="main_action_counters_kanban_view_menu"                           
+                />
+        <menuitem id="action_transactions_tree_view_menu"
+                name="Transactions"
+                action="action_transactions_tree_view"
                 parent="main_action_counters_kanban_view_menu"                           
                 />
     </data>

@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 from odoo.tools.translate import _
 
-class Transaction(models.Model):
+class counter_transaction(models.Model):
     _name = 'exchangecounter.transaction'
     _description = "MLCC Transaction"
 
@@ -39,13 +39,16 @@ class Transaction(models.Model):
         string=_("Last Modified on"),
         required=False,
         translate=False,
-        readonly=True
+        readonly=True,
     )
 
-
-    transaction_type = fields.Many2one(
-        'exchangecounter.transactiontype',
-        string='Transaction Type',
+    TRANSACTIONTYPE = [
+        ('coupons', 'Coupons'),
+        ('national_money', 'National Money'),
+        ('deposit', 'Deposit')
+    ]
+    transaction_type = fields.Selection(
+        TRANSACTIONTYPE,
         required= True,
     )
     transaction_date = fields.Datetime(
@@ -67,27 +70,24 @@ class Transaction(models.Model):
         default=STATES[0][0]
     )
 
-
-class Coupons(models.Model):
-    _name = 'exchangecounter.coupons'
-    _description = "MLCC Coupons"
-    _inherit = 'exchangecounter.transaction'
-
-    location_orig_id=fields.Many2one(
+    ################################################
+    # fields for the coupons
+    ################################################
+    coupons_location_orig_id=fields.Many2one(
         'stock.location',
         string='Origine stock',
         required=True,
         ondelete='set null',
         readonly=True
     )
-    location_dest_id=fields.Many2one(
+    coupons_location_dest_id=fields.Many2one(
         'stock.location',
         string='Destination stock',
         required=True,
         ondelete='set null',
         readonly=True
     )
-    quantity_coupons=fields.Integer(
+    coupons_quantity=fields.Integer(
         string="Quantity of coupons",
         required=True
     )
@@ -97,22 +97,17 @@ class Coupons(models.Model):
         ondelete='set null',
     )
 
-
-
-
-class Money(models.Model):
-    _name = 'exchangecounter.money'
-    _description = "MLCC Coupon"
-    _inherit = 'exchangecounter.transaction'
-
-    journal_orig_id=fields.Many2one(
+    ################################################
+    # fields for the national currency transactions
+    ################################################
+    national_currency_journal_orig_id=fields.Many2one(
         'account.journal',
         string='Origine stock',
         required=True,
         ondelete='set null',
         readonly=True
     )
-    journal_dest_id=fields.Many2one(
+    national_currency_journal_dest_id=fields.Many2one(
         'account.journal',
         string='Destination stock',
         required=True,
@@ -120,21 +115,17 @@ class Money(models.Model):
         readonly=True
     )
 
-
-
-class Deposit(models.Model):
-    _name = 'exchangecounter.deposit'
-    _description = "MLCC Coupon"
-    _inherit = 'exchangecounter.transaction'
-
-    journal_orig_id=fields.Many2one(
+    ################################################
+    # fields for the deposits
+    ################################################
+    deposit_journal_orig_id=fields.Many2one(
         'account.journal',
         string='Origine stock',
         required=True,
         ondelete='set null',
         readonly=True
     )
-    journal_dest_id=fields.Many2one(
+    deposit_journal_dest_id=fields.Many2one(
         'account.journal',
         string='Destination stock',
         required=True,
