@@ -76,20 +76,20 @@ class counter_transaction(models.Model):
     coupons_location_orig_id=fields.Many2one(
         'stock.location',
         string='Origine stock',
-        required=True,
+        required=False,
         ondelete='set null',
         readonly=True
     )
     coupons_location_dest_id=fields.Many2one(
         'stock.location',
         string='Destination stock',
-        required=True,
+        required=False,
         ondelete='set null',
         readonly=True
     )
     coupons_quantity=fields.Integer(
         string="Quantity of coupons",
-        required=True
+        required=False
     )
     coupons_list=fields.Many2one(
         'product.product',
@@ -103,14 +103,14 @@ class counter_transaction(models.Model):
     national_currency_journal_orig_id=fields.Many2one(
         'account.journal',
         string='Origine stock',
-        required=True,
+        required=False,
         ondelete='set null',
         readonly=True
     )
     national_currency_journal_dest_id=fields.Many2one(
         'account.journal',
         string='Destination stock',
-        required=True,
+        required=False,
         ondelete='set null',
         readonly=True
     )
@@ -121,14 +121,14 @@ class counter_transaction(models.Model):
     deposit_journal_orig_id=fields.Many2one(
         'account.journal',
         string='Origine stock',
-        required=True,
+        required=False,
         ondelete='set null',
         readonly=True
     )
     deposit_journal_dest_id=fields.Many2one(
         'account.journal',
         string='Destination stock',
-        required=True,
+        required=False,
         ondelete='set null',
         readonly=True
     )

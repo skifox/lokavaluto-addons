@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.tools.translate import _
 
 class counter_cashbox(models.Model):
@@ -50,25 +50,27 @@ class counter_cashbox(models.Model):
         translate=False,
         readonly=False
     )
-    salesteams_id = fields.Many2one(
-        string=_("Groupe local"),
-        required=True,
-        translate=False,
-        readonly=False
-    )
+    #salesteams_id = fields.Many2one(
+    #     string=_("Groupe local"),
+    #     required=False,
+    #     translate=False,
+    #     readonly=False
+    # )
     company_id = fields.Many2one(
         string=_("Organisation"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
     cashbox_type_id = fields.Many2one(
+        'exchangecounter.cashboxtype.name',
         string=_("Type de caisse"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )    
     cashbox_referent_id = fields.Many2one(
+        'partner.name',
         string=_("Cashbox référent"),
         required=False,
         translate=False,
@@ -92,13 +94,13 @@ class counter_cashbox(models.Model):
     #Currencies
     national_currency_id = fields.Many2one(
         string=_("Devise nationale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
     local_currency_id = fields.Many2one(
         string=_("Devise locale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
@@ -114,13 +116,13 @@ class counter_cashbox(models.Model):
     # Coupons
     local_currency_cash_journal_id = fields.Many2one(
         string=_("Compte caisse en monnaie locale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
     local_currency_cash_out_journal_id = fields.Many2one(
         string=_("Compte caisse  destinataire en monnaie locale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
@@ -128,13 +130,13 @@ class counter_cashbox(models.Model):
     # National money
     national_currency_cash_journal_id = fields.Many2one(
         string=_("Compte caisse monnaie nationale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
     national_currency_cash_out_journal_id = fields.Many2one(
         string=_("Compte caisse destination monnaie nationale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
@@ -142,13 +144,13 @@ class counter_cashbox(models.Model):
     #Checkout
     national_currency_check_journal_id = fields.Many2one(
         string=_("Compte chèque en monnaie nationale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )
     national_currency_check_out_journal_id = fields.Many2one(
         string=_("Compte chèque destinataire en monnaie nationale"),
-        required=True,
+        required=False,
         translate=False,
         readonly=False
     )

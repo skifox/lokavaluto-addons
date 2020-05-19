@@ -7,7 +7,7 @@
       <field name="arch" type="xml">
         <kanban create="false" class="o_kanban_dashboard o_pos_kanban">
           <field name="name"/>
-          <field name="salesteams_id"/>
+          <!-- <field name="salesteams_id"/> -->
           <field name="local_currency_cash_journal_id"/>
           <field name="national_currency_cash_journal_id"/>
           <field name="national_currency_check_journal_id"/> 
@@ -28,20 +28,20 @@
               <t t-set="check_out"         t-value="record.national_currency_check_out_journal_id.raw_value"/>
               <t t-set="local_currency"    t-value="record.local_currency_id.raw_value"/>
               <t t-set="nationa_currency"  t-value="record.national_currency_id.raw_value"/>
-              <t t-set="team_id"           t-value="record.salesteams_id.value"/>
+              <!-- <t t-set="team_id"           t-value="record.salesteams_id.value"/> -->
               <t t-set="referent_id"       t-value="record.cashbox_referent_id.value"/>
                               
               <div style="width: 450px;">
                 <div class="o_kanban_card_header">
                   <div class="o_kanban_card_header_title mb16">
                     <div class="o_primary">
-                      <t t-esc="record.x_name.value"/>
+                      <t t-esc="record.name.value"/>
                     </div>
                     <div class="badge badge-info o_kanban_inline_block">  
-                      <t t-esc="record.salesteams_id.value"/>
+                      <!--<t t-esc="record.salesteams_id.value"/> -->
                       /<t t-esc="record.cashbox_referent_id.value"/>
                     </div>
-                    <t t-if="x_cashbox_type_id == 'Comptoir de change'"> <!-- t-call="JournalBodyGraph"-->
+                    <t t-if="cashbox_type_id == 'Comptoir de change'"> <!-- t-call="JournalBodyGraph"-->
                       <div class="badge badge-success o_kanban_inline_block">In Progress</div>
                     </t>
                     <t t-set="unused_message">Unused</t>
@@ -55,9 +55,9 @@
                 <div class="container o_kanban_card_content">
                   <h4>Transfert</h4>
                   <div class="col-12 texte-center o_kanban_primary_left"> <!--  groups="account_check_deposit.account_check_deposit_view_tree"-->
-                    <button class="offset-1 col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{national_cash_in}},'default_bank_journal_id':{{national_cash_out}}}"><t t-esc="record.x_national_currency_id.value"/></button>
-                    <button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{local_cash_in}},'default_bank_journal_id':{{local_cash_out}}}"><t t-esc="record.x_local_currency_id.value"/></button>
-                    <!--button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_x_salesteams_id': {{team_id}},'default_journal_id': {{local_cash_in}},'default_bank_journal_id':{{local_cash_out}}}"><t t-esc="record.x_local_currency_id.value"/></button-->
+                    <button class="offset-1 col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{national_cash_in}},'default_bank_journal_id':{{national_cash_out}}}"><t t-esc="record.national_currency_id.value"/></button>
+                    <button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{local_cash_in}},'default_bank_journal_id':{{local_cash_out}}}"><t t-esc="record.local_currency_id.value"/></button>
+                    <!--button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_salesteams_id': {{team_id}},'default_journal_id': {{local_cash_in}},'default_bank_journal_id':{{local_cash_out}}}"><t t-esc="record.local_currency_id.value"/></button-->
                     <button class="col-3 btn btn-primary" name="553" type="action" t-attf-data-context="{'default_journal_id': {{check_in}},'default_bank_journal_id':{{check_out}}}">Chèques</button>
                   </div>
                 </div>
@@ -101,7 +101,7 @@
                   </div>
               
                   <!-- TODO faire en sorte que ce lien soit visible comme sur la page point de vente -->
-                  <div class="o_kanban_card_manage_settings row" groups="x_accounting_config.edit">
+                  <div class="o_kanban_card_manage_settings row" groups="counter_cashbox.edit">
                     <div role="menuitem" class="col-12">
                       <a type="edit">Settings</a>
                     </div>
@@ -123,7 +123,7 @@
           <sheet>
             <group>
               <field name="name"/>
-              <field name="salesteams_id"/>
+              <!-- <field name="salesteams_id"/> -->
               <field name="cashbox_type_id"/>
               <field name="cashbox_referent_id"/>
               <field name="cashbox_contact_id"/>
@@ -142,7 +142,7 @@
       <field name="arch" type="xml">
         <tree string="Transactions Tree">
           <field name="name"/>
-          <field name="salesteams_id"/>
+          <!-- <field name="salesteams_id"/> -->
           <field name="cashbox_type_id"/>
           <field name="cashbox_referent_id"/>
           <field name="cashbox_contact_id"/>
