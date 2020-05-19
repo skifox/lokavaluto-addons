@@ -3,6 +3,9 @@ from odoo.tools.translate import _
 
 
 class cashbox_type(models.Model):
+    _name = 'exchangecounter.cashboxtype'
+    _description = "MLCC Counter Cashbox Types"
+    
     write_date = fields.Datetime(
         string=_("Last Updated on"),
         required=False,

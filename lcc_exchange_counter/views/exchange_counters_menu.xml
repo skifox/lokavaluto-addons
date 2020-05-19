@@ -13,21 +13,66 @@
             <field name="name">Transactions</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">exchangecounter.transaction</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html"><p><br/></p></field>
+        </record>
+
+        <record id="action_cashbox_config_list_view" model="ir.actions.act_window">
+            <field name="name">List of cashbox</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">exchangecounter.cashbox</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html"><p><br/></p></field>
+        </record>
+
+        <record id="action_cashbox_types_list_view" model="ir.actions.act_window">
+            <field name="name">Cashbox Types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">exchangecounter.cashboxtype</field>
             <field name="view_mode">tree</field>
             <field name="help" type="html"><p><br/></p></field>
         </record>
 
+
+
         <menuitem id="main_action_counters_kanban_view_menu" 
                 name="Exchange Counters"/>
+        
+        <!-- ####################### -->
+        <!-- ## Exchange Counters ## -->
+        <!-- ####################### -->
         <menuitem id="action_counters_kanban_view_menu"
                 name="Exchange Counters"
                 action="action_counters_kanban_view"
                 parent="main_action_counters_kanban_view_menu"                           
                 />
+
+        <!-- ################## -->
+        <!-- ## Transactions ## -->
+        <!-- ################## -->
         <menuitem id="action_transactions_tree_view_menu"
                 name="Transactions"
                 action="action_transactions_tree_view"
                 parent="main_action_counters_kanban_view_menu"                           
+                />
+
+
+        <!-- #################### -->
+        <!-- ## Configurations ## -->
+        <!-- #################### -->
+        <menuitem id="exchange_counters_configuration_menu"
+                name="Configuration"
+                parent="main_action_counters_kanban_view_menu"                           
+                />
+        <menuitem id="cashbox_config_list_menu"
+                name="List of cashbox"
+                action="action_cashbox_config_list_view"
+                parent="exchange_counters_configuration_menu"                           
+                />
+        <menuitem id="counters_config_list_menu"
+                name="Cashbox types"
+                action="action_cashbox_types_list_view"
+                parent="exchange_counters_configuration_menu"                           
                 />
     </data>
 </odoo>

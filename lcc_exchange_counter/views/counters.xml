@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <odoo>
   <data>
-    <record model="ir.ui.view" id="counters_view">
-      <field name="name">counters.kanban</field>
+    <record model="ir.ui.view" id="cashbox_kanban_view">
+      <field name="name">cashbox.kanban</field>
       <field name="model">exchangecounter.cashbox</field>
       <field name="arch" type="xml">
         <kanban create="false" class="o_kanban_dashboard o_pos_kanban">
@@ -111,6 +111,43 @@
             </t>
           </templates>
         </kanban>
+      </field>
+    </record>
+
+    <!-- Form view of a transaction -->
+    <record model="ir.ui.view" id="cashbox_form_view">
+      <field name="name">cashbox.form</field>
+      <field name="model">exchangecounter.cashbox</field>
+      <field name="arch" type="xml">
+        <form string="Cashbox Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="salesteams_id"/>
+              <field name="cashbox_type_id"/>
+              <field name="cashbox_referent_id"/>
+              <field name="cashbox_contact_id"/>
+              <field name="cashbox_code"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- List view of transactions -->
+    <record model="ir.ui.view" id="cashbox_tree_view">
+      <field name="name">cashbox.tree</field>
+      <field name="model">exchangecounter.cashbox</field>
+      <field name="arch" type="xml">
+        <tree string="Transactions Tree">
+          <field name="name"/>
+          <field name="salesteams_id"/>
+          <field name="cashbox_type_id"/>
+          <field name="cashbox_referent_id"/>
+          <field name="cashbox_contact_id"/>
+          <field name="cashbox_code"/>
+        </tree>
       </field>
     </record>
   </data>
