@@ -114,25 +114,152 @@
       </field>
     </record>
 
-    <!-- Form view of a transaction -->
+    <!-- ########################################################################## -->
+    <!-- # Form view of a transaction                                             # -->
+    <!-- ########################################################################## -->
     <record model="ir.ui.view" id="cashbox_form_view">
       <field name="name">cashbox.form</field>
       <field name="model">exchangecounter.cashbox</field>
       <field name="arch" type="xml">
-        <form string="Cashbox Form">
+        <form string="Configuration trésorier local">
           <sheet>
-            <group>
-              <field name="name"/>
-              <!-- <field name="salesteams_id"/> -->
-              <field name="cashbox_type_id"/>
+            <div class="oe_title" id="title">
+              <label for="name" class="oe_edit_only"/>
+              <h1><field name="name" string="Nom trésorerie locale"/></h1>
+            </div>
+            <div class="row mt20" id="cashbox_code">
+              <label for="cashbox_code" class="col-lg-2"/>
+              <field name="cashbox_code" class="col-lg-2"/>
+            </div>
+            <div class="row mt50" id="cashbox_contact">
+              <label for="cashbox_referent_id" class="col-lg-2"/>
               <field name="cashbox_referent_id"/>
-              <field name="cashbox_contact_id"/>
-              <field name="cashbox_code"/>
-            </group>
+            </div>
+            <div class="row mt16" id="company">
+              <label for="company_id" class="col-lg-2"/>
+              <field name="company_id"/>
+            </div>
+            <h2 name="accounts">Comptes</h2>
+            <div class="row mt16 o_settings_container">
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="local_currency_cash_journal_id" />
+                  <div class="text-muted">
+                    Sélection du journal de caisse en <t t-esc="record.x_local_currency.value"/>
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="local_currency_cash_journal_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="local_currency_cash_out_journal_id" />
+                  <div class="text-muted">
+                     Sélection du journal de caisse destination en <t t-esc="record.x_local_currency.value"/>
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="local_currency_cash_out_journal_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="national_currency_cash_journal_id" />
+                  <div class="text-muted">
+                    Sélection du journal de caisse en <t t-esc="record.x_national_currency.value"/>
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="national_currency_cash_journal_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="national_currency_cash_out_journal_id" />
+                  <div class="text-muted">
+                    Sélection du journal de caisse destination en <t t-esc="record.x_national_currency.value"/>
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="national_currency_cash_out_journal_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="national_currency_check_journal_id" />
+                  <div class="text-muted">
+                    Sélection du journal de chèque en <t t-esc="record.x_national_currency.value"/>
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="national_currency_check_journal_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="national_currency_check_out_journal_id" />
+                  <div class="text-muted">
+                    Sélection du journal de chèque destinataire en <t t-esc="record.x_national_currency.value"/>
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="national_currency_check_out_journal_id" required="1"/>
+                  </div>
+                </div>            
+              </div>
+            </div>
+            <h2 name="parameters">Autres paramètres</h2>
+            <div class="row mt16 o_settings_container">
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="cashbox_type_id" />
+                  <div class="text-muted">
+                    Type de caisse
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="cashbox_type_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+                        <!-- <div class="col-12 col-lg-6 o_setting_box"> -->
+                          <!-- <div class="o_setting_right_pane"> -->
+                            <!-- <label for="x_salesteams_id" /> -->
+                            <!-- <div class="text-muted"> -->
+                                <!-- Nom du groupe local -->
+                            <!-- </div> -->
+                            <!-- <div class="content-group mt16"> -->
+                                <!-- <field name="x_salesteams_id" required="1"/> -->
+                            <!-- </div> -->
+                          <!-- </div> -->
+                        <!-- </div> -->
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="local_currency_id" />
+                  <div class="text-muted">
+                    Devise locale
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="local_currency_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label for="national_currency_id" />
+                  <div class="text-muted">
+                    Devise nationale
+                  </div>
+                  <div class="content-group mt16">
+                    <field name="national_currency_id" required="1"/>
+                  </div>
+                </div>
+              </div>
+            </div>
           </sheet>
         </form>
       </field>
     </record>
+
 
 
     <!-- List view of transactions -->

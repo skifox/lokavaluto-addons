@@ -121,7 +121,7 @@ class counter_cashbox(models.Model):
         readonly=False
     )
     local_currency_cash_out_journal_id = fields.Many2one(
-        string=_("Compte caisse  destinataire en monnaie locale"),
+        string=_("Compte caisse destinataire en monnaie locale"),
         required=False,
         translate=False,
         readonly=False
