@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <odoo>
   <data>
+
+
+    <!-- ########################################################################## -->
+    <!-- # Kanban view of a cashbox                                               # -->
+    <!-- ########################################################################## -->
     <record model="ir.ui.view" id="cashbox_kanban_view">
       <field name="name">cashbox.kanban</field>
       <field name="model">exchangecounter.cashbox</field>
@@ -114,8 +119,10 @@
       </field>
     </record>
 
+
+
     <!-- ########################################################################## -->
-    <!-- # Form view of a transaction                                             # -->
+    <!-- # Form view of a cashbox                                                 # -->
     <!-- ########################################################################## -->
     <record model="ir.ui.view" id="cashbox_form_view">
       <field name="name">cashbox.form</field>
@@ -262,7 +269,9 @@
 
 
 
-    <!-- List view of transactions -->
+    <!-- ########################################################################## -->
+    <!-- # Tree view of cashbox                                                   # -->
+    <!-- ########################################################################## -->
     <record model="ir.ui.view" id="cashbox_tree_view">
       <field name="name">cashbox.tree</field>
       <field name="model">exchangecounter.cashbox</field>

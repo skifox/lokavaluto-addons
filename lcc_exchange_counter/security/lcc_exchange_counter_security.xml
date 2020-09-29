@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_exchange_counters_category">
+            <field name="name">Exchange counters</field>
+            <field name="description">Application for the exchange counters management</field>
+        </record>
+        <record model="res.groups" id="group_exchange_counters_users">
+            <field name="name">Exchange counters user</field>
+            <field name="category_id" ref="module_exchange_counters_category"/>
+        </record>
+        <record model="res.groups" id="group_exchange_counters_managers">
+            <field name="name">Exchange counters manager</field>
+            <field name="category_id" ref="module_exchange_counters_category"/>
+            <field name="implied_ids" eval="[(4, ref('group_exchange_counters_users'))]"/>
+        </record>
+    </data>
+</odoo>   
